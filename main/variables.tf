@@ -1,5 +1,5 @@
 variable "var_project" {
-        default = "hubnspoke-project"
+        default = "hubnspoke"
     }
 variable "var_env" {
         default = "dev"
