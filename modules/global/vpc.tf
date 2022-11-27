@@ -1,12 +1,12 @@
 resource "google_compute_network_peering" "hub_to_consumer" {
   name         = "peering1"
   network      = google_compute_network.hub_vpc.self_link
-  peer_network = google_compute_network.conbsumer_vpc.self_link
+  peer_network = google_compute_network.consumer_vpc.self_link
 }
 
 resource "google_compute_network_peering" "consumer_to_hub" {
   name         = "peering2"
-  network      = google_compute_network.conbsumer_vpc.self_link
+  network      = google_compute_network.consumer_vpc.self_link
   peer_network = google_compute_network.hub_vpc.self_link
 }
 
@@ -22,12 +22,13 @@ resource "google_compute_network" "consumer_vpc" {
   routing_mode            = "REGIONAL"
 }
 
+
 resource "google_compute_global_address" "private_ip_block" {
   name         = "private-ip-block"
   purpose      = "VPC_PEERING"
   address_type = "INTERNAL"
   ip_version   = "IPV4"
-  addresses    = "10.0.9.0"
+  address    = "10.0.9.0"
   prefix_length = 24
   network       = google_compute_network.hub_vpc.self_link
 }
@@ -58,7 +59,7 @@ resource "google_compute_firewall" "allow-internal" {
   ]
 }
 
-resource "google_compute_firewall" "allow-hub-socks5" {
+/*resource "google_compute_firewall" "allow-hub-socks5" {
   name    = "${google_compute_network.hub_vpc.name}-fw-allow-socks5"
   network = "${google_compute_network.hub_vpc.name}"
 allow {
@@ -66,7 +67,11 @@ allow {
     ports    = ["1080"]
   }
   target_tags = ["panwva"] 
-}
+
+   source_ranges = [
+    "${var.hub_pan_subnet}"
+  ]
+}*/
 
 resource "google_compute_firewall" "allow-hub-ssh" {
   name    = "${google_compute_network.hub_vpc.name}-fw-allow-ssh"
@@ -76,6 +81,11 @@ resource "google_compute_firewall" "allow-hub-ssh" {
     ports    = ["22"]
   }
   target_tags = ["panwva"]
+
+  source_ranges = [
+    "${var.hub_pan_subnet}",
+    "${var.hub_spoke1_mysql_subnet}",
+  ]
   }
 
   resource "google_compute_firewall" "allow-hub-mysql" {
@@ -86,17 +96,24 @@ resource "google_compute_firewall" "allow-hub-ssh" {
     ports    = ["3306"]
   }
   target_tags = ["panwva"]
+
+    source_ranges = [
+    "${var.hub_pan_subnet}",
+    "${var.hub_spoke1_mysql_subnet}",
+    "${var.consumer_mysqlclient_subnet}",
+  ]
   }
 
 
 resource "google_compute_firewall" "allow-socks5" {
   name    = "${google_compute_network.hub_vpc.name}-fw-allow-socks5"
   network = "${google_compute_network.hub_vpc.name}"
+
   allow {
     protocol = "tcp"
     ports    = ["1080"]
   }
-  target_tags = ["socks5"]
+  target_tags = ["socks5","panwva"]
 
    source_ranges = [
     "${var.hub_pan_subnet}",

@@ -1,3 +1,9 @@
+variable "GOOGLE_CREDENTIALS" {
+  type = string
+  sensitive = true
+  description = "Google Cloud service account credentials"
+}
+
 variable "var_project" {
         default = "hubnspoke"
     }
@@ -7,6 +13,15 @@ variable "var_env" {
 variable "var_company" { 
         default = "acme-corp"
     }
+
+variable "var_region" { 
+        default = "us-central1"
+    }
+
+variable "var_zone" { 
+        default = "us-central1-a"
+    }
+
 variable "hub_pan_subnet" {
         default = "10.0.7.0/24"
     }
