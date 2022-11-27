@@ -1,13 +1,7 @@
-variable "GOOGLE_CREDENTIALS" {
-  type = string
-  sensitive = true
-  description = "Google Cloud service account credentials"
-}
-
 variable "var_project" {
         default = "hubnspoke"
     }
-    
+
 variable "var_env" {
         default = "dev"
     }
