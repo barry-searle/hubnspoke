@@ -1,7 +1,7 @@
 provider "google" {
   project     = "${var.var_project}"
   #credentials = "${file("../../hubnspoke-d13b7af7381c.json")}"
-  credentials = var.GOOGLE_CREDENTIALS
+  credentials = "${var.GOOGLE_CREDENTIALS}"
 }
 
 module "vpc" {
