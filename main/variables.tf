@@ -7,6 +7,7 @@ variable "GOOGLE_CREDENTIALS" {
 variable "var_project" {
         default = "hubnspoke"
     }
+    
 variable "var_env" {
         default = "dev"
     }
