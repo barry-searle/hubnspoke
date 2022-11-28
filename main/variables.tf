@@ -30,3 +30,7 @@ variable "consumer_mysqlclient_subnet" {
 variable "mysql_user"{
         default = "fred"
     }
+
+variable "db_password"{
+        default = ""
+    }
