@@ -1,3 +1,7 @@
+resource "random_id" "id" {
+      byte_length = 4
+}
+
 resource "google_compute_instance" "panwva" {
   name         = "panwva-${random_id.id.hex}"
   machine_type = "e2-medium"
