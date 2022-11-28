@@ -24,7 +24,7 @@ variable hub_pan_subnet{
 }
 
 variable hub_spoke1_mysql_subnet{
-    default = "10.0.10.0/24"
+    default = "10.0.8.0/24"
 }
 
 variable "network_self_link" {
