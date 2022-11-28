@@ -34,7 +34,7 @@ module "consumer" {
   #ue1_private_subnet= "${var.ue1_private_subnet}"
 }
 
-module "mysql"{
+module "mysql" {
     source                = "../modules/cloudsql"
     network_self_link     = "${module.vpc.out_hub_vpc_self_link}"
     region_name          = "${var.var_region}"
