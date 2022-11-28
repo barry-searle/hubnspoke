@@ -41,4 +41,5 @@ module "mysql" {
     env                   = "${var.var_env}"
     company               = "${var.var_company}"
     hub_pan_subnet    = "${var.hub_pan_subnet}"
+    user              = "${var.mysql_user}"
 }

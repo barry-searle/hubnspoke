@@ -26,3 +26,7 @@ variable "hub_spoke1_mysql_subnet" {
 variable "consumer_mysqlclient_subnet" {
         default = "10.0.10.0/24"
     }
+
+variable "mysql_user"{
+        default = "fred"
+    }
