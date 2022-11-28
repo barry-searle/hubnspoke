@@ -14,7 +14,7 @@ variable "user"{
     type=string
 }
 
-variable "db_password"{
+variable "password"{
     type=string
     default=""
 }
