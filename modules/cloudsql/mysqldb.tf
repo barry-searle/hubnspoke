@@ -5,7 +5,7 @@ resource "google_sql_database" "main" {
 resource "google_sql_database_instance" "main_primary" {
   name             = "main-primary"
   database_version = "MYSQL_8_0_28"
-  depends_on       = [google_service_networking_connection.private_vpc_connection]
+  depends_on       = [module.hub.out_hub_spoke1_mysql_subnet]
   
   settings {
     tier              = "db-f1-micro"
@@ -13,7 +13,7 @@ resource "google_sql_database_instance" "main_primary" {
     disk_size         = 10  # 10 GB is the smallest disk size
     ip_configuration {
       ipv4_enabled    = false
-      private_network = google_compute_network.hub_vpc.self_link
+      private_network = mudule.hub.out_hub_vpc_self_link
     }
   }
 }
