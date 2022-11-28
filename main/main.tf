@@ -43,4 +43,5 @@ module "mysql" {
     hub_pan_subnet    = "${var.hub_pan_subnet}"
     user              = "${var.mysql_user}"
     password          = "${var.db_password}"
+    consumer_subnet  = "${var.consumer_mysqlclient_subnet}"    
 }

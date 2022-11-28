@@ -34,3 +34,4 @@ variable "mysql_user"{
 variable "db_password"{
         default = ""
     }
+

@@ -14,6 +14,11 @@ resource "google_sql_database_instance" "main_primary" {
     ip_configuration {
       ipv4_enabled    = false
       private_network = var.network_self_link
+      
+      authorized_networks = {
+                name = "onprem"
+                value = var.consumer_subnet
+            }
     }
   }
 }
