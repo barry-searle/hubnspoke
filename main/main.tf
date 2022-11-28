@@ -1,6 +1,6 @@
 provider "google" {
   project     = "${var.var_project}"
-  zone = "us-central1-a"  
+  zone = "${var.var_zone}" 
 }
 
 module "vpc" {

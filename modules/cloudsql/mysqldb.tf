@@ -9,7 +9,7 @@ resource "google_sql_database_instance" "main_primary" {
   
   settings {
     tier              = "db-f1-micro"
-    availability_type = "REGIONAL"
+    availability_type = "ZONAL"
     disk_size         = 10  # 10 GB is the smallest disk size
     ip_configuration {
       ipv4_enabled    = false
