@@ -1,6 +1,5 @@
 provider "google" {
   project     = "${var.var_project}"
-  #credentials = "${file("../../hubnspoke-d13b7af7381c.json")}"
   zone = "us-central1-a"  
 }
 
@@ -33,4 +32,13 @@ module "consumer" {
   company               = "${var.var_company}"
   consumer_mysqlclient_subnet = "${var.consumer_mysqlclient_subnet}"
   #ue1_private_subnet= "${var.ue1_private_subnet}"
+}
+
+module "mysql"{
+    source                = "../modules/cloudsql"
+    network_self_link     = "${module.vpc.out_hub_vpc_self_link}"
+    region_name          = "${var.var_region}"
+    env                   = "${var.var_env}"
+    company               = "${var.var_company}"
+    hub_pan_subnet    = "${var.hub_pan_subnet}"
 }
