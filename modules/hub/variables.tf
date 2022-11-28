@@ -22,3 +22,6 @@ variable "network_self_link" {
         default = "test"
     }
 
+variable "subnetwork_self_link" {
+    default = "test"
+}

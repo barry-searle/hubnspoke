@@ -16,7 +16,7 @@ module "hub" {
   source                = "../modules/hub"
   network_self_link     = "${module.vpc.out_hub_vpc_self_link}"
   region_name          = "${var.var_region}"
-  #subnetwork1           = "${module.uc1.uc1_out_public_subnet_name}"
+  subnetwork_self_link = "${module.hub.out_pan_subnet_name}"
   env                   = "${var.var_env}"
   company               = "${var.var_company}"
   hub_pan_subnet    = "${var.hub_pan_subnet}"
