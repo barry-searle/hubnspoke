@@ -36,7 +36,7 @@ module "consumer" {
 
 module "mysql" {
     source                = "../modules/cloudsql"
-    network_self_link     = "${module.vpc.vpc_self_link}"
+    network_self_link     = "${module.vpc.out_hub_vpc_self_link}"
     region_name          = "${var.var_region}"
     env                   = "${var.var_env}"
     company               = "${var.var_company}"
