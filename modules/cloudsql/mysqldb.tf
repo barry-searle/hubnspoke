@@ -15,10 +15,10 @@ resource "google_sql_database_instance" "main_primary" {
       ipv4_enabled    = false
       private_network = var.network_self_link
       
-      authorized_networks {
+      /*authorized_networks {
                 name = "onprem"
                 value = var.consumer_subnet
-            }
+            }*/
     }
   }
 }
