@@ -6,6 +6,8 @@ resource "google_compute_instance" "panwva" {
   name         = "panwva-${random_id.id.hex}"
   machine_type = "e2-medium"
   
+  tags = ["panwva"]
+
   can_ip_forward = true
   boot_disk {
     initialize_params {
